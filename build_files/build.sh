@@ -16,6 +16,10 @@ dnf5 install -y zsh
 # CLI tools
 dnf5 install -y ncdu
 dnf5 install -y podman-compose
+# IDE and Dev
+dnf5 install -y neovim
+dnf5 install -y nodejs24
+dnf5 install -y python3-neovim
 
 # Use a COPR Example:
 #
