@@ -20,6 +20,8 @@ dnf5 install -y podman-compose
 dnf5 install -y neovim
 dnf5 install -y nodejs24
 dnf5 install -y python3-neovim
+# Pnpm
+dnf5 install -y pnpm
 
 # Use a COPR Example:
 #
