@@ -13,6 +13,10 @@ set -ouex pipefail
 dnf5 install -y kitty
 dnf5 install -y tmux
 dnf5 install -y zsh
+# Window manager and tools
+dnf5 install -y sway
+dnf5 install -y waybar
+dnf5 install -y rofi
 # CLI tools
 dnf5 install -y ncdu
 dnf5 install -y podman-compose
