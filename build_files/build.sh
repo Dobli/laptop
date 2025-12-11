@@ -18,6 +18,9 @@ dnf5 install -y sway
 dnf5 install -y waybar
 dnf5 install -y rofi
 # CLI tools
+dnf5 install -y gopass
+dnf5 install -y gopass-jsonapi
+dnf5 install -y lxpolkit
 dnf5 install -y ncdu
 dnf5 install -y podman-compose
 # IDE and Dev
