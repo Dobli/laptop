@@ -14,6 +14,8 @@ dnf5 install -y kitty
 dnf5 install -y tmux
 dnf5 install -y zsh
 # CLI tools
+dnf5 install -y gopass
+dnf5 install -y gopass-jsonapi
 dnf5 install -y ncdu
 dnf5 install -y podman-compose
 # IDE and Dev
