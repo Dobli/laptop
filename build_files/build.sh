@@ -27,7 +27,7 @@ dnf5 install -y pnpm
 
 # CachyOS Kernel
 dnf5 -y copr enable bieszczaders/kernel-cachyos
-dnf5 install -y kernel-cachyos kernel-cachyos-devel-matched
+dnf5 install -y kernel-cachyos
 dnf5 -y copr disable bieszczaders/kernel-cachyos
 
 # Use a COPR Example:
