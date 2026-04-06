@@ -29,7 +29,19 @@ dnf5 install -y pnpm
 echo 'Enable SElinux Kernel policy'
 setsebool -P domain_kernel_load_modules on
 dnf5 -y copr enable bieszczaders/kernel-cachyos
-rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos
+
+# Derive the kernel version automatically from the repo metadata
+KVER=$(dnf5 repoquery kernel-cachyos --queryformat '%{version}-%{release}.%{arch}' | tail -1)
+
+# Pre-create modules.dep so dracut doesn't abort during the rpm-ostree transaction
+mkdir -p /usr/lib/modules/${KVER}
+touch /usr/lib/modules/${KVER}/modules.dep
+
+rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra \
+  --install kernel-cachyos
+
+# Rebuild the real modules.dep now that the kernel modules are in place
+depmod -a "${KVER}"
 dnf5 -y copr disable bieszczaders/kernel-cachyos
 
 # Use a COPR Example:
