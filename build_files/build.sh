@@ -25,22 +25,6 @@ dnf5 install -y python3-neovim
 # Pnpm
 dnf5 install -y pnpm
 
-# CachyOS Kernel
-echo 'Enable SElinux Kernel policy'
-setsebool -P domain_kernel_load_modules on
-# Add copr for kernel
-dnf5 -y copr enable bieszczaders/kernel-cachyos
-# Don't execute post install scripts to handle them manually
-dnf5 -y remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
-dnf5 -y install kernel-cachyos --setopt=tsflags=noscripts
-# Build the module dependency map that dracut needs
-KVER=$(rpm -q --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}\n' kernel-cachyos-core)
-depmod -a "$KVER"
-# Generate the initramfs manually
-dracut --force --kver "$KVER" "/boot/initramfs-${KVER}.img"
-# Disable copr for kernel
-dnf5 -y copr disable bieszczaders/kernel-cachyos
-
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
